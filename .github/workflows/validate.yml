@@ -1,0 +1,19 @@
+name: validate
+on: [push, pull_request]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m compileall -q scripts
+      - run: bash -n setup.sh
+      - run: python - <<'PY'
+        from pathlib import Path
+        p=Path('skills/icon-coach/SKILL.md')
+        assert p.exists() and p.read_text().startswith('---')
+        print('skill ok')
+        PY

@@ -1,0 +1,11 @@
+.venv/
+__pycache__/
+*.pyc
+.env
+.DS_Store
+coaches/*/raw/*
+!coaches/*/raw/.gitkeep
+coaches/*/data/*
+!coaches/*/data/.gitkeep
+coaches/*/CORPUS.md
+*.zip
